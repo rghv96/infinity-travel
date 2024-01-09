@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Results</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Infinity Travel</a></h1>
+    </header>
+    <nav id="top-nav">
+      <% if (!isAuthenticated) { %>
+      <div>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+      </div>
+      <% } else { %>
+      <div>
+        Welcome <%= username %> :) |
+        <!-- Added Search Flights Link -->
+        <a href="/customer-support">Customer Support</a> |
+        <a href="/logout">Logout</a>
+      </div>
+      <% } %>
+    </nav>
+    <main class="container">
+      <h2>Customer Support</h2>
+      <p>Email: Support@infinitytravel.com</p>
+      <p>Phone: 800-555-5555</p>
+      <p>Hours: M-F 8:00AM - 5:00PM EST</p>
+    </main>
+  </body>
+</html>

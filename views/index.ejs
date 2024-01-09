@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinity Travel</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Infinity Travel</a></h1>
+    </header>
+
+    <nav id="top-nav">
+      <% if (!isAuthenticated) { %>
+      <div>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+      </div>
+      <% } else { %>
+      <div>
+        Welcome <%= username %> :) |
+        <!-- Added Search Flights Link -->
+        <a href="/notifications" class="notification-icon">🔔</a> | <% if (
+        user.role === 'admin') { %>
+        <a href="/admin">Admin Panel</a>
+        <% } %>
+
+        <a href="/customer-support">Customer Support</a> |
+        <a href="/logout">Logout</a>
+      </div>
+      <% } %>
+    </nav>
+
+    <main class="home-container">
+      <section class="intro">
+        <div class="intro-text">
+          <h2>Explore The World With Us</h2>
+          <p>
+            Welcome to Infinity Travel, your number one source for all things
+            travel. We're dedicated to providing you the best of travel, with a
+            focus on dependability, customer service, and uniqueness.
+          </p>
+          <% if (isAuthenticated) { %>
+          <a href="/search-flights" class="btn">Search Flights</a>
+          <a href="/favorites" class="btn">Favorite Places</a>
+          <% } %>
+        </div>
+        <img src="/images/2.jpeg" alt="Travel Image 2" />
+      </section>
+
+      <% if (user) { %>
+      <section class="user-rewards">
+        <h3>Reward Points</h3>
+        <p>You have <%= rewardPoints %> points</p>
+      </section>
+      <% } %> <% if (userDestinations && userDestinations.length > 0) { %>
+      <section class="recommendations">
+        <h3>Recommendations</h3>
+        <p>Our trustworthy recommendations based on your bookings</p>
+        <% userDestinations.forEach((destination) => { %>
+        <h3><%= destination.name %></h3>
+        <ul>
+          <li>
+            <a href="#" class="link-style"
+              >Hotels near <%= destination.name %></a
+            >
+          </li>
+          <li>
+            <a href="#" class="link-style"
+              >Car rentals near <%= destination.name %></a
+            >
+          </li>
+        </ul>
+        <% }); %>
+      </section>
+      <% } %>
+    </main>
+  </body>
+</html>
